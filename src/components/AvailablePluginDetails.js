@@ -5,13 +5,10 @@ import axios from 'axios';
 const AvailablePluginDetails = () => {
   const { folderName } = useParams(); // Extract folderName from route params
   const [AvailablePluginDetails, setAvailablePluginDetails] = useState(null); // Track plugin details
-  const [isInstalled, setIsInstalled] = useState(false); // Track if plugin is installed
   const [loading, setLoading] = useState(true); // Track loading state
 
   // Determine iframe source dynamically
-  const iframeSrc = isInstalled
-    ? `http://localhost:5001/installed-plugins/${folderName}/index`
-    : `http://localhost:5001/plugins/${folderName}/index`;
+  const iframeSrc = `http://localhost:5001/plugins/${folderName}/index`;
 
   // Fetch plugin details dynamically
   useEffect(() => {
@@ -20,7 +17,6 @@ const AvailablePluginDetails = () => {
       .get(`http://localhost:5001/plugins/${folderName}`)
       .then(response => {
         setAvailablePluginDetails(response.data);
-        setIsInstalled(response.data.isInstalled || false);
         setLoading(false);
       })
       .catch(error => {
@@ -32,7 +28,6 @@ const AvailablePluginDetails = () => {
   const handleInstall = async () => {
     try {
       await axios.post('http://localhost:5001/install', { folderName });
-      setIsInstalled(true);
     } catch (error) {
       console.error('Error installing plugin:', error);
     }
