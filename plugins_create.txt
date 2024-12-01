@@ -1,0 +1,5 @@
+npm install express cors body-parser fs-extra
+npm install axios react-router-dom
+
+Frontend: npm start
+Backend: node server.js    (or npm run dev)
