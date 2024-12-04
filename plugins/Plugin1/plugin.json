@@ -4,8 +4,8 @@
   "description": "Plugin1 Description",
   "author": "Author Name X",
   "version": "1.0.0",
-  "minimum_metalmann_version": "2.0.0",
-  "maximum_metalmann_version": "2.0.0",
+  "minimum_version": "2.0.0",
+  "maximum_version": "2.0.0",
   "permissions": [
     "read",
     "write"
